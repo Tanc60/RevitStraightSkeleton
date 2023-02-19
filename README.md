@@ -5,8 +5,13 @@ This tool can be used in generating roof, finding center line in custom shape, e
 <img src="https://github.com/Tanc60/RevitStraightSkeleton/blob/main/picture/3.png?raw=true" width="200">
 <p> 
 In revit the middle lines of walls can be automatically generated, however, for custom shaped wall and other object, there is no automatic function to do.
- It often tedious to hand draw the middle line. In this case, straight skeleton tool is useful for solving this problem.
+ Because of a lack of reference line, it is often tedious to hand draw the middle line. In this case, straight skeleton tool is useful for solving this problem.
 </p> 
+<p> For instance, the red middle line is generated from the blue boudary.</p>
+![image](https://user-images.githubusercontent.com/48271765/219923464-d05b7c3c-1b1c-49de-aa7a-551e208a14b2.png)
+![image](https://user-images.githubusercontent.com/48271765/219923529-8d6038b6-8710-413e-b62e-7cf3a6c66683.png)
+
+
 
 <p>2. modelline to room separation line</p>
 
