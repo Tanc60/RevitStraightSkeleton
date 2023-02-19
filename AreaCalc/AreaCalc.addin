@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>TestApplication</Name>
+    <Assembly>AreaCalc.dll</Assembly>
+    <AddInId>22DF166A-BC9C-4F4F-A21E-47480F26E5DE</AddInId>
+    <FullClassName>AreaCalc.TestApp</FullClassName>
+    <Text>Test Application</Text>
+    <VendorId>Qiang</VendorId>
+    <VendorDescription>Development by Qiang</VendorDescription>
+  </AddIn>
+</RevitAddIns>

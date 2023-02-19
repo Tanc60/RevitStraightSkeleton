@@ -1,0 +1,29 @@
+﻿<Window x:Class="AreaCalc.ProjectSettingWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AreaCalc"
+             mc:Ignorable="d" Height="auto" Width="600" SizeToContent="Height" Title="Project Setting" FontSize="20" Loaded="Window_Loaded">
+    <Border Padding="20">
+        <StackPanel>
+            <Label  Content="建筑类型" Foreground="Black" Background="#FFFFB2B2"/>
+            <ComboBox x:Name="ComboBox1" Margin="10"/>
+            <Label x:Name="label_Name1" Margin="10 0"/>  <!--显示当前建筑类型-->
+            <Separator/>
+            <TextBox x:Name="text" Margin="10"/>
+            <StackPanel Margin="10 0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Content="确定" Width="100" Click="ButtonOKClick"/>
+                    <Button Content="取消" Width="100" Grid.Column="2" Click="ButtonCancel_Click"/>
+                </Grid>
+            </StackPanel>
+        </StackPanel>
+        
+    </Border>
+</Window>
