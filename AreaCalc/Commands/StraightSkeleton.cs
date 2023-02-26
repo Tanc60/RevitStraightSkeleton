@@ -12,11 +12,14 @@ using System.Windows;
 using CGAL.Wrapper;
 using System.Numerics;
 
+
 namespace AreaCalc.Commands
 {
+
     [Transaction(TransactionMode.Manual)]
     internal class StraightSkeleton : IExternalCommand
     {
+
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             UIDocument activeUIDocument = commandData.Application.ActiveUIDocument;
@@ -51,6 +54,8 @@ namespace AreaCalc.Commands
 
                     }
 
+                    //extract the z value
+                    double z = edgePairs.First().Key.Z;
 
                     //conversion
                     var polygons = CommonFunction.GetMultiPolygonsFromRevit(edgePairs);
@@ -58,27 +63,35 @@ namespace AreaCalc.Commands
                     
                     //get the outer polygon and inside holes
                     var vec2_polygons = CommonFunction.ConvertXYZtoVector2List(polygons);
+                    //outers
                     var outer = vec2_polygons[CommonFunction.GetOuterPolygon(vec2_polygons)];
-                    
+                    //holes
                     vec2_polygons.RemoveAt(CommonFunction.GetOuterPolygon(vec2_polygons));
 
                     //CGAL wrapper
                     var ssk = CGAL.Wrapper.StraightSkeleton.Generate(outer, vec2_polygons);
+
+
 
                     Level level = doc.ActiveView.GenLevel;
                     SketchPlane skP = SketchPlane.Create(doc, level.Id);
 
                     foreach (var edge in ssk.Skeleton)
                     {
-                        var stPoint = new XYZ(edge.Start.Position.X, edge.Start.Position.Y, 0.0);
-                        var enPoint = new XYZ(edge.End.Position.X, edge.End.Position.Y, 0.0);
-                        Line line = Line.CreateBound(stPoint, enPoint);
-                        CurveArray cArray = new CurveArray();
-                        cArray.Append(line);
+                        var stPoint = new XYZ(edge.Start.Position.X, edge.Start.Position.Y, z);
+                        var enPoint = new XYZ(edge.End.Position.X, edge.End.Position.Y, z);
 
-                        doc.Create.NewRoomBoundaryLines(skP, cArray, doc.ActiveView);
+                        if (!stPoint.IsAlmostEqualTo(enPoint,0.0001))
+                        {
+                            Line line = Line.CreateBound(stPoint, enPoint);
+                            CurveArray cArray = new CurveArray();
+                            cArray.Append(line);
+                            doc.Create.NewRoomBoundaryLines(skP, cArray, doc.ActiveView);
+                        }
+
+
                     }
-                    /*
+                    
                     string msg = "";
                     foreach (var polygon in polygons)
                     {
@@ -89,7 +102,7 @@ namespace AreaCalc.Commands
                         msg += "\n";
                     }                       
                     MessageBox.Show(msg, "Point List");
-                    */
+                    
 
                 }
                 t.Commit();

@@ -50,3 +50,4 @@ E:\GitHub\RevitStraightSkeleton\AreaCalc\obj\Debug\AreaCalc.dll
 E:\GitHub\RevitStraightSkeleton\AreaCalc\obj\Debug\AreaCalc.pdb
 E:\GitHub\RevitStraightSkeleton\AreaCalc\bin\Debug\img\straightskeleton.png
 E:\GitHub\RevitStraightSkeleton\AreaCalc\bin\Debug\img\projectsetting.png
+E:\GitHub\RevitStraightSkeleton\AreaCalc\obj\Debug\AreaCalc.csproj.AssemblyReference.cache

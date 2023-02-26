@@ -34,7 +34,7 @@ namespace AreaCalc.Tools
 		}
 
 		/// <summary>
-		/// //get the polyline, if the first and last value are the same, the polyline is closed.
+		/// get the polyline, if the first and last value are the same, the polyline is closed.
 		/// </summary>
 		/// <param name="inputEdge"></param>
 		/// <returns></returns>
@@ -45,8 +45,7 @@ namespace AreaCalc.Tools
 			polygon.Add(init.Key);
 			polygon.Add(init.Value);
 			while (true)
-			{
-				
+			{	
 				var result = inputEdge.Where(p => init.Value.IsAlmostEqualTo(p.Key,0.0001)).Select(g => g).FirstOrDefault();
 				if (result.Value != null)
 				{
@@ -57,8 +56,6 @@ namespace AreaCalc.Tools
 				else
 				{ 
 					inputEdge.Remove(init);
-
-
 					break;
 				}
 					
@@ -115,6 +112,11 @@ namespace AreaCalc.Tools
 		{
 			return vertices.First() == vertices.Last();
 		}
+		/// <summary>
+		/// check orientation and delete duplicated point
+		/// </summary>
+		/// <param name="vertices"></param>
+		/// <returns></returns>
 		public static List<Vector2> CheckOrientation(List<Vector2> vertices)
 		{
 			if (IsClosed(vertices))
@@ -170,7 +172,6 @@ namespace AreaCalc.Tools
 				if (IsInPolygon(polygons[0][0], polygons[i]))
 				{
 					return i;
-
 				}			
 			}
 			return 0;
